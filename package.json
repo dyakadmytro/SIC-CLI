@@ -1,0 +1,21 @@
+{
+  "name": "forever-arena",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "fantasy-name-generator": "^2.0.0",
+    "probability-node": "^0.0.1",
+    "random-text-generator": "^3.2.1",
+    "unique-names-generator": "^4.7.1"
+  }
+}

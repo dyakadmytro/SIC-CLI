@@ -13,4 +13,10 @@ export class Name {
         //todo add middle name check if null
         return [this._lastName, this._middleName, this._firstName].filter((i) => Boolean(i) != false).join(' ');
     }
+
+    get fullName(): string {
+        return this.getName()
+    }
+
+
 }

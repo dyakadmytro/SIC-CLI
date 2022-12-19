@@ -1,16 +1,16 @@
 import {Hit} from "./Hit";
 import {rangeRandInt} from "../functions";
 import {Defense} from "./Defense";
+import {Damage} from "../Elements/Damage";
 
 export class Attack {
     protected hit: Hit;
     protected _defence: Defense;
-    protected _damage: number
+    protected _damage: Damage
     protected _hasCalculated: boolean
 
     constructor(hit: Hit) {
         this.hit = hit
-        this._damage = 0
         this._hasCalculated = false
     }
 
@@ -28,15 +28,15 @@ export class Attack {
         if (this._hasCalculated) return this
         let damage = 0;
         if (this.calcAgility(this._defence.agility.value) < this.calcAgility(this.hit.agility.value)) {
-            damage = Math.round(Math.floor(this.hit.damage - this._defence.protection.value))
+            damage = Math.round(Math.floor(this.hit.damage.value - this._defence.protection.value))
         }
-        this._damage = damage > 0? damage : 0
+        this._damage = new Damage(damage)
         this._hasCalculated = true
         return this
     }
 
-    public calcAgility(agility): number{
-        // todo add to strict to object property
+    protected calcAgility(agility): number{
+        //todo add strict to object property
         return (agility / rangeRandInt(1, 100)) * 100;
     }
 }

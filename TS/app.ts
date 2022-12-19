@@ -1,4 +1,3 @@
-
 import { uniqueNamesGenerator, Config, names, colors } from 'unique-names-generator';
 import {PersonFactory} from "./Factories/PersonFactory";
 import {NameGenerator} from "./Factories/Generators/NameGenerator";
@@ -6,9 +5,7 @@ import {StrengthGenerator} from "./Factories/Generators/StrengthGenerator";
 import {AgilityGenerator} from "./Factories/Generators/AgilityGenerator";
 import {ProtectionGenerator} from "./Factories/Generators/ProtectionGenerator";
 import {FighterFactory} from "./Factories/FighterFactory";
-import {BattleFactory} from "./Factories/BattleFactory";
 import {FightersCollection} from "./Collections/FightersCollection";
-import {dotStringToNestedObj, nestedObjToDotString} from "./functions";
 import {DuelFactory} from "./Factories/DuelFactory";
 import {BattleFather} from "./Controllers/BattleFather";
 import {Logger} from "./Services/Logger";
@@ -39,7 +36,6 @@ const PF = new PersonFactory([
 ])
 const FF = new FighterFactory([], PF)
 
-// console.log(fc.pluck('person.name').join(' VS '))
 const DF = new DuelFactory(new FightersCollection([
     FF.make(),
     FF.make()
@@ -47,13 +43,6 @@ const DF = new DuelFactory(new FightersCollection([
 const BF = new BattleFather(DF.prepareBattle(), new Logger())
 BF.fight()
 console.log(BF.getLog())
-// karabas.addFighter(FF.make())
-// karabas.addFighter(FF.make())
-// const battleFather = karabas.prepareBattle()
-// battleFather.fight()
-// // todo get Winner
-// // todo add log
-// console.log(FF.make())
 
 //
 // const fighters = [

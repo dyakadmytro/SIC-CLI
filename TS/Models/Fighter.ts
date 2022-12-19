@@ -46,7 +46,7 @@ export class Fighter implements FightInterface{
     }
 
     public damage(attack: Attack): void {
-        this._damaged += attack.damage
+        this._damaged += attack.damage.value
     }
 
     // protected calcDamage(hit: Hit): number {

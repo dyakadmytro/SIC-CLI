@@ -13,7 +13,8 @@ export class BattleFather {
 
     fight() {
         // todo add only one fight
-        const title = this._battle.getFighters().pluck('person.name').join(' VS ')
+        const title = this._battle.getFighters().pluck('person.name.fullName').join(' VS ')
+
         this._logger.push(title)
         while (this._battle.isFightingContinue()) {
             this._battle.checkInitiative()
@@ -24,7 +25,7 @@ export class BattleFather {
             attack.calcDamage()
             target.damage(attack)
 
-            const attackLog = `${initiator.person.name} hit ${target.person.name} with damage: ${attack.damage}`
+            const attackLog = `${initiator.person.name} hit ${target.person.name} with damage: ${attack.damage.value}`
 
             this._logger.push(attackLog)
         }

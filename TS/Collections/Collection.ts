@@ -24,14 +24,15 @@ export class Collection {
 
     pluck(params: string) {
         const nested = (needle, arr) => {
+            if(typeof arr == 'undefined') return;
             if(typeof needle == 'string'){
-                return  needle[0]
+                return  arr
             }
             if (typeof needle == 'object'){
                 const k = Object.keys(needle)[0]
                 const v = needle[k]
                 if(k && v) {
-                    return nested(v, k[v])
+                    return nested(v, arr[k])
                 } else {
                     return needle[0]
                 }
@@ -40,7 +41,6 @@ export class Collection {
         }
 
         const pluck = (arr, key) => arr.map(i => nested(key, i))
-
         return pluck(this._collection, dotStringToNestedObj(params))
     }
 

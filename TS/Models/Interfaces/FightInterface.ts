@@ -1,4 +1,5 @@
 import {Attack} from "../Attack";
+import {Hit} from "../Hit";
 
 export interface FightInterface {
 
@@ -8,5 +9,5 @@ export interface FightInterface {
 
     takeAttack(attack: Attack): Attack
 
-    makeAttack(): Attack
+    makeAttack(hit: Hit): Attack
 }

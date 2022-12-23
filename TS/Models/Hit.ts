@@ -14,7 +14,7 @@ export class Hit implements StrengthInterface, AgilityInterface{
     constructor(strength: Strength, agility: Agility) {
         this._strength = strength
         this._agility = agility
-        this._chance = rangeRandInt(10, 30)
+        this._chance = rangeRandInt(20, 50)
     }
 
     get strength(): Strength {

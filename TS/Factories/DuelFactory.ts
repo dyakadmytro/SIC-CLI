@@ -1,5 +1,5 @@
 import {BattleFactory} from "./BattleFactory";
-import {DuelBattle} from "../Controllers/DuelBattle";
+import {DuelBattle} from "../Controllers/Battles/DuelBattle";
 
 export class DuelFactory extends BattleFactory{
     prepareBattle(): DuelBattle {

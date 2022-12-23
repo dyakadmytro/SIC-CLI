@@ -1,8 +1,8 @@
-import {BattleFather} from "./BattleFather";
-import {Fighter} from "../Models/Fighter";
-import {BattleInterface} from "./Interfaces/BattleInterface";
-import {FightersCollection} from "../Collections/FightersCollection";
-import {AbstractBattle} from "./Interfaces/AbstractBattle";
+import {BattleFather} from "../BattleFather";
+import {Fighter} from "../../Models/Fighter";
+import {BattleInterface} from "../Interfaces/BattleInterface";
+import {FightersCollection} from "../../Collections/FightersCollection";
+import {AbstractBattle} from "../Interfaces/AbstractBattle";
 
 export class DuelBattle extends AbstractBattle implements BattleInterface{
     protected leftCorner: Fighter
@@ -55,5 +55,14 @@ export class DuelBattle extends AbstractBattle implements BattleInterface{
 
     getTarget(): Fighter {
         return this.target
+    }
+
+    getFighter(uuid: string): Fighter {
+        const needle = this.getFighters().find((fighter => {
+            return fighter.uuid === uuid
+        }) )
+        // console.log(needle, needle instanceof Fighter )
+        // if (needle !instanceof Fighter ) throw new Error('Can`t find Fighter!')
+        return needle
     }
 }

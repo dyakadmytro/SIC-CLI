@@ -22,7 +22,7 @@ export class FighterFactory {
     }
 
     makeFrom(person: Person): Fighter {
-        return new Fighter(person)
+        return new Fighter( person)
     }
 
 

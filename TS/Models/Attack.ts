@@ -37,6 +37,6 @@ export class Attack {
 
     protected calcAgility(agility): number{
         //todo add strict to object property
-        return (agility / rangeRandInt(1, 100)) * 100;
+        return (agility / rangeRandInt(1, 30)) *100 ;
     }
 }

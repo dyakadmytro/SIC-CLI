@@ -8,7 +8,7 @@ import {Protection} from "../Elements/Protection";
 import {ProtectionInterface} from "../Elements/Itnerfaces/ProtectionInterface";
 
 
-export class Person implements StrengthInterface, AgilityInterface, ProtectionInterface{
+export class Person implements StrengthInterface, AgilityInterface, ProtectionInterface {
     protected _name: Name
     protected _hp: number
     protected traits: [PersonTrait]

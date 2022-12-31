@@ -1,58 +1,25 @@
-import {SelectPlayerView} from "./SelectPlayerView";
-import {DuelGame} from "../Games/DuelGame";
+
 import {ViewFacade as View} from "../../Facades/ViewFacade";
-import {GameMaster} from "../../Facades/GameMaster";
-import {colors, Config, names} from "unique-names-generator";
-import {PersonFactory} from "../../Factories/PersonFactory";
-import {NameGenerator} from "../../Factories/Generators/NameGenerator";
-import {StrengthGenerator} from "../../Factories/Generators/StrengthGenerator";
-import {AgilityGenerator} from "../../Factories/Generators/AgilityGenerator";
-import {ProtectionGenerator} from "../../Factories/Generators/ProtectionGenerator";
-import {FighterFactory} from "../../Factories/FighterFactory";
+import {GameMasterFacade} from "../../Facades/GameMasterFacade";
 
 export class VersusView {
 
     render() {
-        const customConfig: Config = {
-            dictionaries: [names, colors],
-            separator: ' ',
-            length: 2,
-            style: 'capital'
-        };
+        if(!GameMasterFacade.isGameStarted) GameMasterFacade.start()
+        const chosen1Fighter = (GameMasterFacade.battle.leftCorner)? ` (${GameMasterFacade.battle.leftCorner?.person.name})` : ''
+        const chosen2Fighter = (GameMasterFacade.battle.rightCorner)? ` (${GameMasterFacade.battle.rightCorner?.person.name})` : ''
 
-        const PF = new PersonFactory([
-            new NameGenerator(customConfig),
-            new StrengthGenerator({
-                min: 20,
-                max: 50
-            }),
-            new AgilityGenerator({
-                min: 20,
-                max: 50
-            }),
-            new ProtectionGenerator({
-                min: 20,
-                max: 50
-            })
-        ])
-        const FF = new FighterFactory({}, PF)
-
-        if(!GameMaster.game) GameMaster.newGame(DuelGame.init(FF))
-        let lf = ''
-        let rf = ''
-        if (GameMaster.game.leftCorner) lf = ` (${GameMaster.game.leftCorner?.person.name})`
-        if (GameMaster.game.rightCorner) rf = ` (${GameMaster.game.rightCorner?.person.name})`
         global.inquirer.prompt({
             type: 'list',
             name: 'menu',
             message: 'Versus',
             choices: [
                 {
-                    name: 'Select left corner fighter' + lf,
+                    name: 'Select left corner fighter' + chosen1Fighter,
                     value: 'select1Player',
                 },
                 {
-                    name: 'Select right corner fighter' + rf,
+                    name: 'Select right corner fighter' + chosen2Fighter,
                     value: 'select2Player'
                 },
                 {
@@ -68,8 +35,6 @@ export class VersusView {
         }).then(function (result) {
             if (result.menu == 'back') {
                 View.render('init')
-            } else if (result.menu == 'start') {
-                //todo validate
             } else {
                 View.render(result.menu)
             }

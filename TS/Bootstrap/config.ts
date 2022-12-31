@@ -3,16 +3,21 @@ import {VersusView} from "../Controllers/Views/VersusView";
 import {SelectPlayerView} from "../Controllers/Views/SelectPlayerView";
 import {SelectFirstPlayerView} from "../Controllers/Views/SelectFirstPlayerView";
 import {SelectSecondPlayerView} from "../Controllers/Views/SelectSecondPlayerView";
+import {StartView} from "../Controllers/Views/StartView";
+import {TurnView} from "../Controllers/Views/TurnView";
 
 export const config = {
     app: {
         name: 'Forever Arena'
     },
+    // add config update by game settings
     views: {
         init: WelcomeView,
         versus: VersusView,
         select1Player: SelectFirstPlayerView,
         select2Player: SelectSecondPlayerView,
+        start: StartView,
+        turn: TurnView,
     }
 }
 

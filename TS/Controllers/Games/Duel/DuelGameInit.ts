@@ -1,14 +1,13 @@
 import {FighterFactory} from "../../../Factories/FighterFactory";
 import {FightersCollection} from "../../../Collections/FightersCollection";
 import {Fighter} from "../../../Models/Fighter";
-import {DuelGameBattle} from "./DuelGameBattle";
-import {DuelFactory} from "../../../Factories/DuelFactory";
 import {BattleFather} from "../../BattleFather";
 import {Logger} from "../../../Services/Logger";
+import {DuelBattle} from "../../Battles/DuelBattle";
 
 export class DuelGameInit {
-    protected leftCorner: Fighter| any = null
-    protected rightCorner: Fighter| any = null
+    protected leftCorner: Fighter | any = null
+    protected rightCorner: Fighter | any = null
     protected fightersList: FightersCollection
     protected _fighterFactory: FighterFactory
 
@@ -33,12 +32,9 @@ export class DuelGameInit {
     }
 
     startBattle() {
-        const DF = new DuelFactory(new FightersCollection([
-            this.leftCorner,
-            this.rightCorner
-        ]))
+        const DF = new DuelBattle(this.leftCorner, this.rightCorner)
         // const battleHost = new BattleFather(DF.prepareBattle(), new Logger())
         // return new DuelGameBattle(battleHost)
-        return new BattleFather(DF.prepareBattle(), new Logger())
+        return new BattleFather(DF, new Logger())
     }
 }

@@ -1,19 +1,24 @@
 import {BaseStateView} from "./BaseStateView";
-import {GameMaster} from "../../Facades/GameMaster";
+import {GameMasterFacade} from "../../Facades/GameMasterFacade";
 import {ViewFacade as View} from "../../Facades/ViewFacade";
 
 export class StartView extends BaseStateView{
     render() {
-        const data = {
-            leftID: global.game.leftCorner.uuid,
-            rightID: global.game.rightCorner.uuid,
-            sort: [
-                {name: 'left', massage: 'Left guess'},
-                {name: 'right', massage: 'Right guess'}
-            ]
+        if (!GameMasterFacade.battle.leftCorner || !GameMasterFacade.battle.rightCorner) {
+            console.log('Select players first!')
+            View.previous()
+        } else {
+            const data = {
+                player1ID: GameMasterFacade.battle.leftCorner.uuid,
+                player2ID: GameMasterFacade.battle.rightCorner.uuid,
+                promptOrder: [
+                    {name: 'left', massage: 'Left guess'},
+                    {name: 'right', massage: 'Right guess'}
+                ]
+            }
+            GameMasterFacade.startBattle()
+            GameMasterFacade.game.genNeedle()
+            View.render('turn' , data)
         }
-        GameMaster.game.startBattle()
-        // global.guessGame.genNeedle()
-        View.render('turn' , data)
     }
 }

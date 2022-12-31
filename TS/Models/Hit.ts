@@ -14,8 +14,9 @@ export class Hit implements StrengthInterface, AgilityInterface{
     constructor(strength: Strength, agility: Agility) {
         this._strength = strength
         this._agility = agility
-        this._chance = rangeRandInt(20, 50)
+        this._chance = rangeRandInt(15, 30)
     }
+
 
     get strength(): Strength {
         return this._strength;
@@ -26,7 +27,7 @@ export class Hit implements StrengthInterface, AgilityInterface{
     }
 
     get damage(): Damage {
-        if(this._damage) return this.damage;
+        if(this._damage) return this._damage;
         this._damage = new Damage(this.calcDamage());
         return this._damage;
     }
@@ -36,6 +37,7 @@ export class Hit implements StrengthInterface, AgilityInterface{
     }
 
     protected calcDamage(): number {
+        // console.log('calc damage', this.strength.value, this.agility.value, this._chance)
         return Math.round(((this.strength.value * this.agility.value) / this._chance) )
     }
 

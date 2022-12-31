@@ -12,7 +12,7 @@ export class CriticHit extends Hit{
 
     constructor(strength: Strength, agility: Agility) {
         super(strength, agility)
-        this.criticRand = rangeRandInt(20, 50)
+        this.criticRand = rangeRandInt(10, 20)
     }
 
     public log() {

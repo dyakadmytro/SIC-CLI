@@ -27,9 +27,15 @@ export class Attack {
     public calcDamage(): Attack {
         if (this._hasCalculated) return this
         let damage = 0;
-        if (this.calcAgility(this._defence.agility.value) < this.calcAgility(this.hit.agility.value)) {
+        this._damage
+        const cad = this.calcAgility(this._defence.agility.value)
+        const cah = this.calcAgility(this.hit.agility.value)
+        // console.log('Dodge', cad, cah)
+        // console.log('hit', this.hit.damage.value, this._defence.protection.value, damage)
+        if (cad < cah) {
             damage = Math.round(Math.floor(this.hit.damage.value - this._defence.protection.value))
         }
+        //todo add cad === cah
         this._damage = new Damage(damage)
         this._hasCalculated = true
         return this
@@ -37,6 +43,6 @@ export class Attack {
 
     protected calcAgility(agility): number{
         //todo add strict to object property
-        return (agility / rangeRandInt(1, 30)) *100 ;
+        return (agility / rangeRandInt(5, 10)) * 100
     }
 }

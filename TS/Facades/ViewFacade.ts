@@ -30,7 +30,7 @@ export class ViewFacade {
     }
 
     static render(name: string, data: any = null): void {
+        ViewFacade._viewsHistory.push(name);
         (new ViewFacade._views[name](data)).render()
-        ViewFacade._viewsHistory.push(name)
     }
 }

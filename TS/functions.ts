@@ -3,6 +3,7 @@ function rangeRandInt(min: number, max: number): number {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
 }
+
 function sliceIntoChunks(arr, chunkSize) {
     const res = [];
     for (let i = 0; i < arr.length; i += chunkSize) {

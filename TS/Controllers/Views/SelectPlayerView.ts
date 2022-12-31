@@ -1,21 +1,20 @@
 import {BaseStateView} from "./BaseStateView";
 import {ViewFacade as View} from "../../Facades/ViewFacade";
-import {GameMaster} from "../../Facades/GameMaster";
+import {GameMasterFacade} from "../../Facades/GameMasterFacade";
 
 export class SelectPlayerView extends BaseStateView{
 
     render() {
-        const game = GameMaster.game
         global.inquirer.prompt({
             type: 'list',
             name: 'menu',
-            message: 'Select Left corner fighter',
+            message: 'Select fighter',
             choices: [
-                ...game.fightersList.collection.map((f, i) => {
+                ...GameMasterFacade.battle.fightersList.collection.map((f, i) => {
                     return {
                         name: `${f.person.name} [S: ${f.person.strength.value} | A: ${f.person.agility.value} | P: ${f.person.protection.value}]`,
                         value: f.uuid,
-                        disabled: (f.uuid == game.rightCorner?.uuid)
+                        disabled: (f.uuid == GameMasterFacade.battle.rightCorner?.uuid) || (f.uuid == GameMasterFacade.battle.leftCorner?.uuid)
                     }
                 }),
                 {
@@ -28,12 +27,6 @@ export class SelectPlayerView extends BaseStateView{
     }
 
     protected processResult(result) {
-        const game = GameMaster.game
-        if (result.menu && result.menu == 'back') {
-            View.previous()
-        } else {
-            game.selectLeftCorner(result.menu)
-            View.previous()
-        }
+
     }
 }

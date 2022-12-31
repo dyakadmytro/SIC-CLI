@@ -1,26 +1,37 @@
-import {Fighter} from "../Models/Fighter";
-import {FightersCollection} from "../Collections/FightersCollection";
-import {BattleFather} from "../Controllers/BattleFather";
+import {colors, Config, names} from "unique-names-generator";
+import {PersonFactory} from "./PersonFactory";
+import {NameGenerator} from "./Generators/NameGenerator";
+import {StrengthGenerator} from "./Generators/StrengthGenerator";
+import {AgilityGenerator} from "./Generators/AgilityGenerator";
+import {ProtectionGenerator} from "./Generators/ProtectionGenerator";
+import {FighterFactory} from "./FighterFactory";
+import {DuelGameInit} from "../Controllers/Games/Duel/DuelGameInit";
 
-// make abstract
 export class BattleFactory {
-    protected _fightersCollection: FightersCollection
+    make() {
+        const customConfig: Config = {
+            dictionaries: [names, colors],
+            separator: ' ',
+            length: 2,
+            style: 'capital'
+        };
 
-    constructor(fightersCollection: FightersCollection) {
-        this._fightersCollection = fightersCollection
-    }
-
-    get fighters() {
-        return this._fightersCollection.uuids()
-    }
-
-    addFighter(fighter: Fighter): BattleFactory {
-        this._fightersCollection.push(fighter)
-        return this
-    }
-
-    removeFighter(uuid: string): BattleFactory {
-        this._fightersCollection.remove(uuid)
-        return this
+        const PF = new PersonFactory([
+            new NameGenerator(customConfig),
+            new StrengthGenerator({
+                min: 35,
+                max: 45
+            }),
+            new AgilityGenerator({
+                min: 35,
+                max: 45
+            }),
+            new ProtectionGenerator({
+                min: 35,
+                max: 45
+            })
+        ])
+        const FF = new FighterFactory({}, PF)
+        return new DuelGameInit(FF)
     }
 }

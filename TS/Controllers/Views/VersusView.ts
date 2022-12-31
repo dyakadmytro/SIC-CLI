@@ -13,7 +13,6 @@ import {FighterFactory} from "../../Factories/FighterFactory";
 export class VersusView {
 
     render() {
-        // remove game setup
         const customConfig: Config = {
             dictionaries: [names, colors],
             separator: ' ',
@@ -37,12 +36,12 @@ export class VersusView {
             })
         ])
         const FF = new FighterFactory({}, PF)
-        if(!GameMaster.currentGame()) GameMaster.newGame(DuelGame.init(FF))
 
+        if(!GameMaster.game) GameMaster.newGame(DuelGame.init(FF))
         let lf = ''
         let rf = ''
-        // if (global.game.leftCorner) lf = ` (${global.game.leftCorner?.person.name})`
-        // if (global.game.rightCorner) rf = ` (${global.game.rightCorner?.person.name})`
+        if (GameMaster.game.leftCorner) lf = ` (${GameMaster.game.leftCorner?.person.name})`
+        if (GameMaster.game.rightCorner) rf = ` (${GameMaster.game.rightCorner?.person.name})`
         global.inquirer.prompt({
             type: 'list',
             name: 'menu',

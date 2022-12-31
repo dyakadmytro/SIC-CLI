@@ -2,6 +2,7 @@ import {WelcomeView} from "../Controllers/Views/WelcomeView";
 import {VersusView} from "../Controllers/Views/VersusView";
 import {SelectPlayerView} from "../Controllers/Views/SelectPlayerView";
 import {SelectFirstPlayerView} from "../Controllers/Views/SelectFirstPlayerView";
+import {SelectSecondPlayerView} from "../Controllers/Views/SelectSecondPlayerView";
 
 export const config = {
     app: {
@@ -11,7 +12,7 @@ export const config = {
         init: WelcomeView,
         versus: VersusView,
         select1Player: SelectFirstPlayerView,
-        // select2Player: SelectSecondPlayerView,
+        select2Player: SelectSecondPlayerView,
     }
 }
 

@@ -5,7 +5,7 @@ import {GameMaster} from "../../Facades/GameMaster";
 export class SelectPlayerView extends BaseStateView{
 
     render() {
-        const game = GameMaster.currentGame()
+        const game = GameMaster.game
         global.inquirer.prompt({
             type: 'list',
             name: 'menu',
@@ -24,13 +24,16 @@ export class SelectPlayerView extends BaseStateView{
                 },
             ],
             loop: true
-        }).then(function (result) {
-            if (result.menu && result.menu == 'back') {
-                View.previous()
-            } else {
-                game.selectLeftCorner(result.menu)
-                View.previous()
-            }
-        })
+        }).then(this.processResult)
+    }
+
+    protected processResult(result) {
+        const game = GameMaster.game
+        if (result.menu && result.menu == 'back') {
+            View.previous()
+        } else {
+            game.selectLeftCorner(result.menu)
+            View.previous()
+        }
     }
 }

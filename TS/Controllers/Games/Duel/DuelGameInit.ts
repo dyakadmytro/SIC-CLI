@@ -7,8 +7,8 @@ import {BattleFather} from "../../BattleFather";
 import {Logger} from "../../../Services/Logger";
 
 export class DuelGameInit {
-    protected leftCorner: Fighter| any
-    protected rightCorner: Fighter| any
+    protected leftCorner: Fighter| any = null
+    protected rightCorner: Fighter| any = null
     protected fightersList: FightersCollection
     protected _fighterFactory: FighterFactory
 

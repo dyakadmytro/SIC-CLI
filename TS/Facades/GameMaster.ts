@@ -1,7 +1,7 @@
 export class GameMaster {
     private static _inst: GameMaster
     // todo add game interface
-    private static _game: any
+    private static _game: any = null
 
     private constructor() {}
 
@@ -18,7 +18,7 @@ export class GameMaster {
         this._game = game
     }
 
-    static currentGame() {
+    static get game() {
         return this._game
     }
 }

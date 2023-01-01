@@ -3,6 +3,7 @@ import {LoggerInterface} from "../Services/Interfaces/LoggerInterface";
 import {FightersCollection} from "../Collections/FightersCollection";
 import {Fighter} from "../Models/Fighter";
 import {Damage} from "../Elements/Damage";
+require('colors');
 
 export class BattleFather {
     protected _battle: BattleInterface
@@ -39,8 +40,22 @@ export class BattleFather {
         attack = target.takeAttack(attack)
         attack.calcDamage()
         target.damage(attack.damage)
-        console.log(this._battle.getFighter(uuid).person.name + ' damaged with ' + attack.damage.value + `    (${target.hp}%)`)
+
+        // @ts-ignore
+        let hpStr = `    (${target.hp}%)`.green
+        if(target.hp <= 25) {
+            // @ts-ignore
+            hpStr = `(${target.hp}%)`.red
+        } else if(target.hp < 65) {
+            // @ts-ignore
+            hpStr = `(${target.hp}%)`.yellow
+        } else {
+            // @ts-ignore
+            hpStr.green
+        }
+        console.log(this._battle.getFighter(uuid).person.name + ' damaged with ' + attack.damage.value + hpStr)
         return this
+
     }
 
     criticAttack(uuid: string): BattleFather {
@@ -51,7 +66,8 @@ export class BattleFather {
         attack = target.takeAttack(attack)
         attack.calcDamage()
         target.damage(attack.damage)
-        console.log(this._battle.getFighter(uuid).person.name + ' damaged with ' + attack.damage.value + `    (${target.hp}%)`)
+        const hpStr = global.colors.green(`    (${target.hp}%)`)
+        console.log(this._battle.getFighter(uuid).person.name + ' damaged with ' + attack.damage.value + hpStr)
         return this
     }
 

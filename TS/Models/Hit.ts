@@ -17,7 +17,6 @@ export class Hit implements StrengthInterface, AgilityInterface{
         this._chance = rangeRandInt(15, 30)
     }
 
-
     get strength(): Strength {
         return this._strength;
     }

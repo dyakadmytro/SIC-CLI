@@ -1,4 +1,3 @@
-import {GameFactory} from "../Factories/GameFactory";
 import {BattleFactory} from "../Factories/BattleFactory";
 import {GuessGame} from "./Games/GuessGame";
 

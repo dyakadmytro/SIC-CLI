@@ -12,8 +12,8 @@ export class StartView extends BaseStateView{
                 player1ID: GameMasterFacade.battle.leftCorner.uuid,
                 player2ID: GameMasterFacade.battle.rightCorner.uuid,
                 promptOrder: [
-                    {name: 'left', massage: 'Left guess'},
-                    {name: 'right', massage: 'Right guess'}
+                    {name: 'left', massage: 'Left guess', id: GameMasterFacade.battle.leftCorner.uuid,},
+                    {name: 'right', massage: 'Right guess', id: GameMasterFacade.battle.rightCorner.uuid,}
                 ]
             }
             GameMasterFacade.startBattle()

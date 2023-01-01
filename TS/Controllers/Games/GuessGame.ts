@@ -24,11 +24,6 @@ export class GuessGame {
             guess['isNichja'] = true
         }
 
-        if(this._needle === v[0] || this._needle === v[1]) {
-            this.genNeedle()
-            guess['clean'] = true
-        }
-
         const p1Number = Math.abs(this._needle - Number(v[0]) )
         const p2Number = Math.abs(this._needle - Number(v[1]) )
 
@@ -41,6 +36,12 @@ export class GuessGame {
         } else {
             throw new Error('not found condition!')
         }
+
+        if(this._needle === v[0] || this._needle === v[1]) {
+            this.genNeedle()
+            guess['isClear'] = true
+        }
+
         return guess
     }
 }

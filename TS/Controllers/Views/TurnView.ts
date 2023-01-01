@@ -13,11 +13,11 @@ export class TurnView extends BaseStateView{
             name: item.name,
             message: item.massage,
             validate: function (answer) {
-                if(answer && Number.isInteger(Number(answer))) {
-                    if (Number(answer) === global.guessed) {
+                if(answer && Number.isInteger(Number(answer.replace('!', '')))) {
+                    if (Number(answer.replace('!', '')) === global.guessed) {
                         return 'Shouldn`t be same!'
                     }
-                    global.guessed = Number(answer)
+                    global.guessed = Number(answer.replace('!', ''))
                     return true
                 } else {
                     return 'Should be number!'
@@ -32,8 +32,9 @@ export class TurnView extends BaseStateView{
         const data = {player1ID: result.player1ID, player2ID: result.player2ID, sort: result.sort, promptOrder: result.promptOrder}
 
         const guesses = {}
-        guesses[result.player1ID] = Number(result.left)
-        guesses[result.player2ID] = Number(result.right)
+
+        guesses[result.player1ID] = Number(result.left.replace('!', ''))
+        guesses[result.player2ID] = Number(result.right.replace('!', ''))
 
         const guess = GameMasterFacade.game.compare(guesses)
 
@@ -55,7 +56,7 @@ export class TurnView extends BaseStateView{
             GameMasterFacade.battle.attack(guess.looser)
         }
 
-        // if( result.promptOrder[0].name !== 'left') result.sort.reverse()
+        if( result.promptOrder[0].id !== guess.winner) result.promptOrder.reverse()
         if (!GameMasterFacade.battle.isFightingContinue) {
             console.log('and the winner is ' + GameMasterFacade.battle.winner.person.name)
             return ;

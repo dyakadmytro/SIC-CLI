@@ -11,8 +11,9 @@ export class SelectPlayerView extends BaseStateView{
             message: 'Select fighter',
             choices: [
                 ...GameMasterFacade.battle.fightersList.collection.map((f, i) => {
+                    const name = f.person.name.underline.magenta
                     return {
-                        name: `${f.person.name} [S: ${f.person.strength.value} | A: ${f.person.agility.value} | P: ${f.person.protection.value}]`,
+                        name: `${name} [S: ${f.person.strength.value} | A: ${f.person.agility.value} | P: ${f.person.protection.value}]`,
                         value: f.uuid,
                         disabled: (f.uuid == GameMasterFacade.battle.rightCorner?.uuid) || (f.uuid == GameMasterFacade.battle.leftCorner?.uuid)
                     }

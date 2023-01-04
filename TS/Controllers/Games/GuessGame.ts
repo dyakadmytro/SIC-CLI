@@ -14,7 +14,8 @@ export class GuessGame {
     compare(guesses) {
         const guess = {
             isNichja: false,
-            clean: false
+            isDanger: false,
+            isClear: false
         }
 
         const k = Object.keys(guesses)
@@ -23,9 +24,15 @@ export class GuessGame {
         if (v[0] === v[1]) {
             guess['isNichja'] = true
         }
+        // @ts-ignore
+        if (v[0].search('!') + v[1].search('!') >= 0) {
+            guess['isDanger'] = true
+        }
 
-        const p1Number = Math.abs(this._needle - Number(v[0]) )
-        const p2Number = Math.abs(this._needle - Number(v[1]) )
+        // @ts-ignore
+        const p1Number = Math.abs(this._needle - Number(v[0].replace('!', '')) )
+        // @ts-ignore
+        const p2Number = Math.abs(this._needle - Number(v[1].replace('!', '')) )
 
         if (p1Number < p2Number) {
             guess['winner'] = k[0]
@@ -37,7 +44,8 @@ export class GuessGame {
             throw new Error('not found condition!')
         }
 
-        if(this._needle === v[0] || this._needle === v[1]) {
+        // @ts-ignore
+        if(this._needle === Number(v[0].replace('!', '')) || this._needle === Number(v[1].replace('!', ''))) {
             this.genNeedle()
             guess['isClear'] = true
         }

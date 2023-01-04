@@ -6,8 +6,8 @@ export class VersusView {
 
     render() {
         if(!GameMasterFacade.isGameStarted) GameMasterFacade.start()
-        const chosen1Fighter = (GameMasterFacade.battle.leftCorner)? ` (${GameMasterFacade.battle.leftCorner?.person.name})` : ''
-        const chosen2Fighter = (GameMasterFacade.battle.rightCorner)? ` (${GameMasterFacade.battle.rightCorner?.person.name})` : ''
+        const chosen1Fighter = (GameMasterFacade.battle.leftCorner)? ` • ${GameMasterFacade.battle.leftCorner?.person.name.underline.magenta} • ` : ''
+        const chosen2Fighter = (GameMasterFacade.battle.rightCorner)? ` • ${GameMasterFacade.battle.rightCorner?.person.name.underline.magenta} • ` : ''
 
         global.inquirer.prompt({
             type: 'list',

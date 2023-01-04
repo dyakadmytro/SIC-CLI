@@ -6,6 +6,7 @@ export class TurnView extends BaseStateView{
     render() {
         // todo need turn for different game types
 
+        console.log('                   ')
         console.log('guess the number?')
 
         const questions = this._data.promptOrder.map((item) => ({
@@ -32,33 +33,37 @@ export class TurnView extends BaseStateView{
         const data = {player1ID: result.player1ID, player2ID: result.player2ID, sort: result.sort, promptOrder: result.promptOrder}
 
         const guesses = {}
-
-        guesses[result.player1ID] = Number(result.left.replace('!', ''))
-        guesses[result.player2ID] = Number(result.right.replace('!', ''))
-
+        guesses[result.player1ID] = result.left
+        guesses[result.player2ID] = result.right
         const guess = GameMasterFacade.game.compare(guesses)
 
         if (guess.isNichja) {
             // GameMasterFacade.battle.parirovat(guess.looser)
-            console.log('miss')
+            console.log('⚔ miss ⚔')
             View.render('turn', data)
             return;
         }
 
         GameMasterFacade.battle.selectFighter(guess.winner)
-
+        // console.log(GameMasterFacade.game.showNeedle())
         if (guess.isClear) {
-            console.log('!!!Critical Hit!!!')
-            console.log('New Number will generated!')
+            //@ts-ignore
+            console.log('   !!! Critical Hit !!!   '.italic.yellow)
+            console.log('New Number ❓ will generated!')
             GameMasterFacade.battle.criticAttack(guess.looser)
             GameMasterFacade.game.genNeedle()
         } else {
             GameMasterFacade.battle.attack(guess.looser)
         }
+        if(guess.isDanger) {
+            console.log('🍀 Lucky attack 🍀')
+            GameMasterFacade.battle.attack(guess.looser)
+        }
 
         if( result.promptOrder[0].id !== guess.winner) result.promptOrder.reverse()
         if (!GameMasterFacade.battle.isFightingContinue) {
-            console.log('and the winner is ' + GameMasterFacade.battle.winner.person.name)
+            console.log('                           ')
+            console.log('🎉 And the winner is ' + GameMasterFacade.battle.winner.person.name.underline.magenta + ' 🏆 🎉')
             return ;
             /*View.render('congratulations', {})*/
         }

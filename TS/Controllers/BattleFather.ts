@@ -3,6 +3,7 @@ import {LoggerInterface} from "../Services/Interfaces/LoggerInterface";
 import {FightersCollection} from "../Collections/FightersCollection";
 import {Fighter} from "../Models/Fighter";
 import {Damage} from "../Elements/Damage";
+import {randomInt} from "crypto";
 require('colors');
 
 export class BattleFather {
@@ -42,18 +43,68 @@ export class BattleFather {
         target.damage(attack.damage)
 
         // @ts-ignore
-        let hpStr = `    (${target.hp}%)`.green
-        if(target.hp <= 25) {
+        let selectedHpStr = `(${this.__selectedFighter.hp}%)`.green
+        if(this.__selectedFighter.hp <= 0) {
             // @ts-ignore
-            hpStr = `(${target.hp}%)`.red
-        } else if(target.hp < 65) {
+            selectedHpStr = `(${this.__selectedFighter.hp}%)`.grey
+        }else if(this.__selectedFighter.hp <= 25) {
             // @ts-ignore
-            hpStr = `(${target.hp}%)`.yellow
-        } else {
+            selectedHpStr = `(${this.__selectedFighter.hp}%)`.red
+        } else if(this.__selectedFighter.hp <= 65) {
             // @ts-ignore
-            hpStr.green
+            selectedHpStr = `(${this.__selectedFighter.hp}%)`.yellow
         }
-        console.log(this._battle.getFighter(uuid).person.name + ' damaged with ' + attack.damage.value + hpStr)
+        // @ts-ignore
+        let targetHpStr = `(${target.hp}%)`.green
+        if(target.hp <= 0) {
+            // @ts-ignore
+            targetHpStr = `(${target.hp}%)`.grey
+        }else if(target.hp <= 25) {
+            // @ts-ignore
+            targetHpStr = `(${target.hp}%)`.red
+        } else if(target.hp <= 65) {
+            // @ts-ignore
+            targetHpStr = `(${target.hp}%)`.yellow
+        }
+
+        // @ts-ignore
+        let dmgStr = ` ${attack.damage.value} `.gray
+        if(attack.damage.value >= 40) {
+            // @ts-ignore
+            dmgStr = ` ${attack.damage.value} `.red
+        } else if(attack.damage.value >= 25) {
+            // @ts-ignore
+            dmgStr = ` ${attack.damage.value} `.yellow
+        } else if(attack.damage.value >= 1) {
+            // @ts-ignore
+            dmgStr = ` ${attack.damage.value} `.white
+        }
+
+        let playerFace = '🙂'
+
+        if(attack.damage.value === 0) {
+            const dogeFaces = ['😀', '🤨', '🙃', '😶', '😲', '😨', '🤡', '🥴', '🛡']
+            playerFace = dogeFaces[randomInt(0, --dogeFaces.length)]
+        } else if(attack.damage.value > 70) {
+            playerFace = '🥵'
+        } else if(attack.damage.value > 40) {
+            playerFace = '😡'
+        } else if(attack.damage.value > 20) {
+            playerFace = '😖'
+        } else if(attack.damage.value > 10) {
+            playerFace = '😬'
+        } else if(attack.damage.value > 0) {
+            playerFace = '😠'
+        }
+        if (target.hp <= 0) {
+            playerFace = '💀'
+        }
+
+        // @ts-ignore
+        console.log(selectedHpStr + ` ${this.__selectedFighter.person.name.underline.magenta} 🗡 • ${dmgStr} • ${playerFace} ${target.person.name.underline.magenta} ` + targetHpStr)
+
+        // console.log(this._battle.getFighter(uuid).person.name + ` ${playerFace
+        // } damaged with` + dmgStr + hpStr)
         return this
 
     }
@@ -66,8 +117,11 @@ export class BattleFather {
         attack = target.takeAttack(attack)
         attack.calcDamage()
         target.damage(attack.damage)
-        const hpStr = global.colors.green(`    (${target.hp}%)`)
-        console.log(this._battle.getFighter(uuid).person.name + ' damaged with ' + attack.damage.value + hpStr)
+        // @ts-ignore
+        const hpStr = `    (${target.hp}%)`.bgRed
+
+        //@ts-ignore
+        console.log(this._battle.getFighter(uuid).person.name.underline.magenta + ' damaged with ' + ` ${attack.damage.value} `.bgWhite.black + hpStr)
         return this
     }
 

@@ -1,14 +1,15 @@
 import {LoggerInterface} from "./Interfaces/LoggerInterface";
 
 export class Logger implements LoggerInterface{
-    protected _log: any
+    protected _log: [any?] = []
 
-    constructor() {
-        this._log = []
+    get log(): [any?] {
+        return this._log
     }
 
-    get log() {
-        return this._log
+    last(): any {
+        if (this._log.length < 1) return null
+        return this._log[this._log.length - 1]
     }
 
     push(data: any): Logger {

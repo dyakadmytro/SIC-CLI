@@ -35,6 +35,15 @@ export class Fighter implements FightInterface{
         return this._person;
     }
 
+    get log(): object {
+        return {
+            uuid: this.uuid,
+            hp: this.hp,
+            isAlive: this.isAlive(),
+            person: this.person
+        }
+    }
+
     public isAlive(): boolean {
         return (this.person.hp - this._damaged) > 0
     }
@@ -69,17 +78,4 @@ export class Fighter implements FightInterface{
     public damage(damage: Damage): void {
         this._damaged += damage.value
     }
-
-    // protected calcDamage(hit: Hit): number {
-    //     let damage = 0;
-    //     if (this.calcAgility(this.person.agility.value) < this.calcAgility(hit.agility.value)) {
-    //         damage = Math.round(Math.floor(hit.damage - this.person.protection.value))
-    //     }
-    //     return damage > 0? damage : 0
-    // }
-
-    // protected calcAgility(agility): number{
-    //     return (agility / rangeRandInt(1, 100)) * 100;
-    // }
-
 }

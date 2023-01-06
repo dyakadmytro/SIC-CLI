@@ -2,5 +2,7 @@
 export interface LoggerInterface{
     push(data: any)
 
-    log()
+    last(): any | null
+
+    get log(): [any?]
 }

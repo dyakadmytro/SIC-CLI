@@ -8,6 +8,7 @@ export class Attack {
     protected _defence: Defense;
     protected _damage: Damage
     protected _hasCalculated: boolean
+    protected _log: any
 
     constructor(hit: Hit) {
         this.hit = hit
@@ -24,25 +25,33 @@ export class Attack {
         return this._damage
     }
 
+    get log(): object {
+        return this._log
+    }
+
     public calcDamage(): Attack {
         if (this._hasCalculated) return this
         let damage = 0;
         this._damage
         const cad = this.calcAgility(this._defence.agility.value)
         const cah = this.calcAgility(this.hit.agility.value)
-        // console.log('Dodge', cad, cah)
-        // console.log('hit', this.hit.damage.value, this._defence.protection.value, damage)
         if (cad < cah) {
             damage = Math.round(Math.floor(this.hit.damage.value - this._defence.protection.value))
         }
         //todo add cad === cah
         this._damage = new Damage(damage)
         this._hasCalculated = true
+        this._log = {
+            defenceAgility: cad,
+            hitAgility: cah,
+            attackDamage: this.hit.damage.value,
+            protection: this._defence.protection.value,
+            damage
+        }
         return this
     }
 
-    protected calcAgility(agility): number{
-        //todo add strict to object property
+    protected calcAgility(agility): number {
         return (agility / rangeRandInt(5, 10)) * 100
     }
 }

@@ -1,4 +1,3 @@
-import {WelcomeView} from "./WelcomeView";
 import {BaseStateView} from "./BaseStateView";
 import {ViewFacade as View} from "../../Facades/ViewFacade";
 

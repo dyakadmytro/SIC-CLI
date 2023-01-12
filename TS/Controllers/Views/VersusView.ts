@@ -1,4 +1,3 @@
-
 import {ViewFacade as View} from "../../Facades/ViewFacade";
 import {GameMasterFacade} from "../../Facades/GameMasterFacade";
 

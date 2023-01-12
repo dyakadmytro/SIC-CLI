@@ -8,8 +8,9 @@ import {Protection} from "../Elements/Protection";
 import {StrengthGenerator} from "./Generators/StrengthGenerator";
 import {AgilityGenerator} from "./Generators/AgilityGenerator";
 import {ProtectionGenerator} from "./Generators/ProtectionGenerator";
+import {FactoryInterface} from "./Interfaces/FactoryInterface";
 
-export class PersonFactory {
+export class PersonFactory implements FactoryInterface{
 
     protected _generators: any
 

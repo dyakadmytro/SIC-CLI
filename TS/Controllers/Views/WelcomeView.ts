@@ -1,4 +1,3 @@
-import {VersusView} from "./VersusView";
 import {BaseStateView} from "./BaseStateView";
 import {ViewFacade as View} from "../../Facades/ViewFacade";
 

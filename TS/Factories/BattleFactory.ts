@@ -6,8 +6,9 @@ import {AgilityGenerator} from "./Generators/AgilityGenerator";
 import {ProtectionGenerator} from "./Generators/ProtectionGenerator";
 import {FighterFactory} from "./FighterFactory";
 import {DuelGameInit} from "../Controllers/Games/Duel/DuelGameInit";
+import {FactoryInterface} from "./Interfaces/FactoryInterface";
 
-export class BattleFactory {
+export class BattleFactory implements FactoryInterface{
     make() {
         const customConfig: Config = {
             dictionaries: [names, colors],

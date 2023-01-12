@@ -1,8 +1,9 @@
 import {Fighter} from "../Models/Fighter";
 import {Person} from "../Models/Person";
 import {PersonFactory} from "./PersonFactory";
+import {FactoryInterface} from "./Interfaces/FactoryInterface";
 
-export class FighterFactory {
+export class FighterFactory implements FactoryInterface{
 
     protected _generators: any
     protected _personFactory: PersonFactory

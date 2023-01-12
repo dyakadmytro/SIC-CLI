@@ -1,5 +1,4 @@
 import {BaseStateView} from "./BaseStateView";
-import {ViewFacade as View} from "../../Facades/ViewFacade";
 import {GameMasterFacade} from "../../Facades/GameMasterFacade";
 
 export class SelectPlayerView extends BaseStateView{

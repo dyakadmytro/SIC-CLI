@@ -1,4 +1,3 @@
-import {BattleFather} from "../BattleFather";
 import {Fighter} from "../../Models/Fighter";
 import {BattleInterface} from "../Interfaces/BattleInterface";
 import {FightersCollection} from "../../Collections/FightersCollection";
@@ -31,24 +30,6 @@ export class DuelBattle extends AbstractBattle implements BattleInterface{
         if(this.rightCorner.isAlive()) return this.rightCorner
     }
 
-    //todo придумать инициативу
-    public checkInitiative(): BattleInterface {
-        const LI = this.leftCorner.initiative
-        const RI = this.rightCorner.initiative
-        if(LI > RI) {
-            this.initiator = this.leftCorner
-            this.target = this.rightCorner
-        }
-        if(RI > LI) {
-            this.initiator = this.rightCorner
-            this.target = this.leftCorner
-        }
-        if (RI == LI) this.checkInitiative()
-
-        return this
-    }
-
-
     getInitiator(): Fighter {
         return this.initiator
     }
@@ -58,11 +39,8 @@ export class DuelBattle extends AbstractBattle implements BattleInterface{
     }
 
     getFighter(uuid: string): Fighter {
-        const needle = this.getFighters().find((fighter => {
+        return this.getFighters().find((fighter => {
             return fighter.uuid === uuid
         }) )
-        // console.log(needle, needle instanceof Fighter )
-        // if (needle !instanceof Fighter ) throw new Error('Can`t find Fighter!')
-        return needle
     }
 }

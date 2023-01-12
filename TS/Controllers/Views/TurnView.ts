@@ -72,7 +72,7 @@ export class TurnView extends BaseStateView{
             console.log('                           ')
             console.log('🎉 And the winner is ' + GameMasterFacade.battle.winner.person.name.underline.magenta + ' 🏆 🎉')
 
-            // console.log(GameMasterFacade.battle.getLog())
+            // console.log(GameMasterFacade.battle.logger.log)
             return ;
             /*View.render('congratulations', {})*/
         }

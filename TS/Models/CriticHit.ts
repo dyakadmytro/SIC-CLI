@@ -7,7 +7,6 @@ import {Damage} from "../Elements/Damage";
 import {Hit} from "./Hit";
 
 export class CriticHit extends Hit{
-
     public criticRand: number
 
     constructor(strength: Strength, agility: Agility) {

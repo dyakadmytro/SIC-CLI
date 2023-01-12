@@ -1,5 +1,4 @@
 import { Name } from "./Name";
-import {PersonTrait} from "./PersonTrait";
 import {Strength} from "../Elements/Strength";
 import {Agility} from "../Elements/Agility";
 import {StrengthInterface} from "../Elements/Itnerfaces/StrengthInterface";
@@ -11,11 +10,9 @@ import {ProtectionInterface} from "../Elements/Itnerfaces/ProtectionInterface";
 export class Person implements StrengthInterface, AgilityInterface, ProtectionInterface {
     protected _name: Name
     protected _hp: number
-    protected traits: [PersonTrait]
     protected _strength: Strength
     protected _agility: Agility
     protected _protection: Protection
-
 
     constructor(name: Name , strength: Strength, agility: Agility, protection: Protection) {
         this._hp = 100

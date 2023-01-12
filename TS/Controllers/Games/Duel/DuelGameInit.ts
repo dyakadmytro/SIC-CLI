@@ -33,8 +33,6 @@ export class DuelGameInit {
 
     startBattle() {
         const DF = new DuelBattle(this.leftCorner, this.rightCorner)
-        // const battleHost = new BattleFather(DF.prepareBattle(), new Logger())
-        // return new DuelGameBattle(battleHost)
         return new BattleFather(DF, new Logger())
     }
 }

@@ -17,6 +17,4 @@ export class Name {
     get fullName(): string {
         return this.getName()
     }
-
-
 }

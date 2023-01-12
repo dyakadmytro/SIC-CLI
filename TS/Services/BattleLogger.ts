@@ -1,5 +1,5 @@
 import {Logger} from "./Logger";
 
-export class BattleLogger extends Logger{
+export class BattleLogger extends Logger {
 
 }

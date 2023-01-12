@@ -40,7 +40,7 @@ export class Fighter implements FightInterface{
             uuid: this.uuid,
             hp: this.hp,
             isAlive: this.isAlive(),
-            person: this.person
+            person: this.person.log
         }
     }
 

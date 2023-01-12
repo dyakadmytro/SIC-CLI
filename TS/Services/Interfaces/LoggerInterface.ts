@@ -4,5 +4,5 @@ export interface LoggerInterface{
 
     last(): any | null
 
-    get log(): [any?]
+    get log()
 }

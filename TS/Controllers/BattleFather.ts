@@ -1,19 +1,19 @@
 import {BattleInterface} from "./Interfaces/BattleInterface";
-import {LoggerInterface} from "../Services/Interfaces/LoggerInterface";
 import {FightersCollection} from "../Collections/FightersCollection";
 import {Fighter} from "../Models/Fighter";
 import {Damage} from "../Elements/Damage";
+import {BattleLog} from "../Models/Log/BattleLog";
 require('colors');
 
 export class BattleFather {
     protected _battle: BattleInterface
-    protected _logger: LoggerInterface
+    logger: BattleLog
     private _selectedFighter: Fighter| any
     private _target: Fighter| any
 
-    constructor(battle: BattleInterface, logger: LoggerInterface) {
+    constructor(battle: BattleInterface, logger: BattleLog) {
         this._battle = battle
-        this._logger = logger
+        this.logger = logger
     }
 
     get fighters(): FightersCollection {
@@ -26,10 +26,6 @@ export class BattleFather {
 
     get winner() {
         return this._battle.getWinner()
-    }
-    
-    get logger() {
-        return this._logger
     }
 
     selectFighter(uuid: string): BattleFather {
@@ -60,7 +56,7 @@ export class BattleFather {
         attack.calcDamage()
         this.target.damage(attack.damage)
 
-        this._logger.push({
+        this.logger.history.push({
             type: 'attack',
             initiator: this.initiator.log,
             target: this.target.log,
@@ -75,7 +71,7 @@ export class BattleFather {
         attack.calcDamage()
         this.target.damage(attack.damage)
 
-        this._logger.push({
+        this.logger.history.push({
             type: 'criticAttack',
             initiator: this.initiator.log,
             target: this.target.log,

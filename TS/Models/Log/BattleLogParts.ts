@@ -1,25 +1,26 @@
+import {Collection} from "../../Collections/Collection";
+
 export class LogMeta {
-    players: LogPlayers
-    fighters: LogFighters
-
-    constructor(logPlayers: LogPlayers, logFighters: LogFighters) {
-        this.fighters = logFighters
-        this.players = logPlayers
-    }
-}
-
-export class LogResult {
+    // battle started, ended, winner, looser
+    fighters: any[] = []
+    startDateTime: Date
+    endDateTime: Date
+    winner: string
+    looser: string
 
 }
-
 export class LogHistory {
+    protected _log: [any?] = []
 
-}
+    get length(): number {
+        return this._log.length
+    }
 
-export class LogFighters {
+    get(key: number) {
+        return this._log[key]
+    }
 
-}
-
-export class LogPlayers {
-
+    push(data: any) {
+        this._log.push(data)
+    }
 }

@@ -1,13 +1,11 @@
-import {LogHistory, LogMeta, LogResult} from "./BattleLogParts";
+import {LogHistory, LogMeta} from "./BattleLogParts";
 
 export class BattleLog {
     meta: LogMeta
     history: LogHistory
-    result: LogResult
 
-    constructor(meta: LogMeta, history: LogHistory, result: LogResult) {
+    constructor(meta: LogMeta, history: LogHistory) {
         this.meta = meta
         this.history = history
-        this.result = result
     }
 }

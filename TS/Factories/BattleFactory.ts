@@ -7,6 +7,7 @@ import {ProtectionGenerator} from "./Generators/ProtectionGenerator";
 import {FighterFactory} from "./FighterFactory";
 import {DuelGameInit} from "../Controllers/Games/Duel/DuelGameInit";
 import {FactoryInterface} from "./Interfaces/FactoryInterface";
+import {LogFactory} from "./LogFactory";
 
 export class BattleFactory implements FactoryInterface{
     make() {
@@ -33,6 +34,7 @@ export class BattleFactory implements FactoryInterface{
             })
         ])
         const FF = new FighterFactory({}, PF)
-        return new DuelGameInit(FF)
+        const LF = new LogFactory()
+        return new DuelGameInit(FF, LF)
     }
 }

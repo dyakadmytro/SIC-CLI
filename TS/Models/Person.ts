@@ -42,4 +42,14 @@ export class Person implements StrengthInterface, AgilityInterface, ProtectionIn
         return this._protection;
     }
 
+    get log() {
+        return {
+            hp: this.hp,
+            name: this.name,
+            strength: this.strength,
+            agility: this.agility,
+            protection: this.protection,
+        }
+    }
+
 }

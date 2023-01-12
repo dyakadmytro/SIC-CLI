@@ -6,7 +6,6 @@ import {randomInt} from "crypto";
 export class TurnView extends BaseStateView{
     render() {
         // todo need turn for different game types
-
         console.log('                   ')
         console.log('guess the number?')
 
@@ -41,7 +40,6 @@ export class TurnView extends BaseStateView{
         const guess = GameMasterFacade.game.compare(guesses)
 
         if (guess.isNichja) {
-            // GameMasterFacade.battle.parirovat(guess.looser)
             console.log('⚔ miss ⚔')
             View.render('turn', data)
             return;

@@ -23,4 +23,9 @@ export class LogHistory {
     push(data: any) {
         this._log.push(data)
     }
+
+    last(): any {
+        if (this._log.length < 1) return null
+        return this._log[this._log.length - 1]
+    }
 }

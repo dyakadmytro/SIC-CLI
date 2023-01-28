@@ -8,4 +8,11 @@ export class BattleLog {
         this.meta = meta
         this.history = history
     }
+
+    last() {
+        return this.history.last()
+    }
 }
+
+
+

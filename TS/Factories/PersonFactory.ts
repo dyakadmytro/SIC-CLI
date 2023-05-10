@@ -26,7 +26,7 @@ export class PersonFactory implements FactoryInterface{
         return this._generators.find((g: any) => g instanceof instance)
     }
 
-    make(): any {
+    make(): Person {
         const name = this.getGenerator(NameGenerator).create()
         const strength = this.getGenerator(StrengthGenerator).create()
         const agility = this.getGenerator(AgilityGenerator).create()

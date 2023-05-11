@@ -1,4 +1,4 @@
-import {ValueInterface} from "./Itnerfaces/ValueInterface";
+import {ValueInterface} from "./Interfaces/ValueInterface";
 
 export class Damage implements ValueInterface{
     protected _value: number

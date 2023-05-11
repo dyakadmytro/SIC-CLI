@@ -1,7 +1,7 @@
 import {Protection} from "../Elements/Protection";
 import {Agility} from "../Elements/Agility";
-import {AgilityInterface} from "../Elements/Itnerfaces/AgilityInterface";
-import {ProtectionInterface} from "../Elements/Itnerfaces/ProtectionInterface";
+import {AgilityInterface} from "../Elements/Interfaces/AgilityInterface";
+import {ProtectionInterface} from "../Elements/Interfaces/ProtectionInterface";
 
 export class Defense implements AgilityInterface, ProtectionInterface{
     protected _protection: Protection

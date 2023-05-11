@@ -1,4 +1,4 @@
-import {ValueInterface} from "./Itnerfaces/ValueInterface";
+import {ValueInterface} from "./Interfaces/ValueInterface";
 
 
 export class Protection implements ValueInterface{

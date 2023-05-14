@@ -34,6 +34,7 @@ export class PersonFactory implements FactoryInterface{
 
         return new Person(
             new Name(name),
+            1,
             new Strength(strength),
             new Agility(agility),
             new Protection(protection)
